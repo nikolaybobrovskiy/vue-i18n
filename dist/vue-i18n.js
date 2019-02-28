@@ -1,5 +1,5 @@
 /*!
- * vue-i18n v8.8.2 
+ * vue-i18n v8.8.3 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -1673,7 +1673,7 @@
   });
 
   VueI18n.install = install;
-  VueI18n.version = '8.8.2';
+  VueI18n.version = '8.8.3';
 
   return VueI18n;
 
