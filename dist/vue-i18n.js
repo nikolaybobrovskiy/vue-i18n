@@ -1,5 +1,5 @@
 /*!
- * vue-i18n v8.8.2 
+ * vue-i18n v8.8.3 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -968,6 +968,8 @@
     }
 
     var locale = options.locale || 'en-US';
+    var numberLocale = options.numberLocale || locale;
+    var dateTimeLocale = options.dateTimeLocale || locale;
     var fallbackLocale = options.fallbackLocale || 'en-US';
     var messages = options.messages || {};
     var dateTimeFormats = options.dateTimeFormats || {};
@@ -1006,6 +1008,8 @@
 
     this._initVM({
       locale: locale,
+      numberLocale: numberLocale,
+      dateTimeLocale: dateTimeLocale,
       fallbackLocale: fallbackLocale,
       messages: messages,
       dateTimeFormats: dateTimeFormats,
@@ -1013,7 +1017,7 @@
     });
   };
 
-  var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },locale: { configurable: true },fallbackLocale: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true } };
+  var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },locale: { configurable: true },numberLocale: { configurable: true },dateTimeLocale: { configurable: true },fallbackLocale: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true } };
 
   VueI18n.prototype._initVM = function _initVM (data) {
     var silent = Vue.config.silent;
@@ -1066,6 +1070,8 @@
   prototypeAccessors.locale.set = function (locale) {
     this._vm.$set(this._vm, 'locale', locale);
   };
+  prototypeAccessors.numberLocale.get = function () { return this._vm.numberLocale };
+  prototypeAccessors.dateTimeLocale.get = function () { return this._vm.dateTimeLocale };
 
   prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
   prototypeAccessors.fallbackLocale.set = function (locale) {
@@ -1174,8 +1180,6 @@
     values,
     visitedLinkStack
   ) {
-      var this$1 = this;
-
     var ret = str;
 
     // Match all the links within the local
@@ -1205,26 +1209,26 @@
       visitedLinkStack.push(linkPlaceholder);
 
       // Translate the link
-      var translated = this$1._interpolate(
+      var translated = this._interpolate(
         locale, message, linkPlaceholder, host,
         interpolateMode === 'raw' ? 'string' : interpolateMode,
         interpolateMode === 'raw' ? undefined : values,
         visitedLinkStack
       );
 
-      if (this$1._isFallbackRoot(translated)) {
-        if (!this$1._silentTranslationWarn) {
+      if (this._isFallbackRoot(translated)) {
+        if (!this._silentTranslationWarn) {
           warn(("Fall back to translate the link placeholder '" + linkPlaceholder + "' with root locale."));
         }
         /* istanbul ignore if */
-        if (!this$1._root) { throw Error('unexpected error') }
-        var root = this$1._root.$i18n;
+        if (!this._root) { throw Error('unexpected error') }
+        var root = this._root.$i18n;
         translated = root._translate(
           root._getMessages(), root.locale, root.fallbackLocale,
           linkPlaceholder, host, interpolateMode, values
         );
       }
-      translated = this$1._warnDefault(
+      translated = this._warnDefault(
         locale, linkPlaceholder, translated, host,
         Array.isArray(values) ? values : [values]
       );
@@ -1613,7 +1617,7 @@
       var args = [], len = arguments.length - 1;
       while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
-    var locale = this.locale;
+    var locale = this.numberLocale;
     var key = null;
     var options = null;
 
@@ -1669,7 +1673,7 @@
   });
 
   VueI18n.install = install;
-  VueI18n.version = '8.8.2';
+  VueI18n.version = '8.8.3';
 
   return VueI18n;
 

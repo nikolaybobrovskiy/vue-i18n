@@ -72,6 +72,8 @@ export default class VueI18n {
     }
 
     const locale: Locale = options.locale || 'en-US'
+    const numberLocale: Locale = options.numberLocale || locale;
+    const dateTimeLocale: Locale = options.dateTimeLocale || locale;
     const fallbackLocale: Locale = options.fallbackLocale || 'en-US'
     const messages: LocaleMessages = options.messages || {}
     const dateTimeFormats = options.dateTimeFormats || {}
@@ -110,6 +112,8 @@ export default class VueI18n {
 
     this._initVM({
       locale,
+      numberLocale,
+      dateTimeLocale,
       fallbackLocale,
       messages,
       dateTimeFormats,
@@ -119,6 +123,8 @@ export default class VueI18n {
 
   _initVM (data: {
     locale: Locale,
+    numberLocale: Locale,
+    dateTimeLocale: Locale,
     fallbackLocale: Locale,
     messages: LocaleMessages,
     dateTimeFormats: DateTimeFormats,
@@ -174,6 +180,8 @@ export default class VueI18n {
   set locale (locale: Locale): void {
     this._vm.$set(this._vm, 'locale', locale)
   }
+  get numberLocale (): Locale { return this._vm.numberLocale }
+  get dateTimeLocale (): Locale { return this._vm.dateTimeLocale }
 
   get fallbackLocale (): Locale { return this._vm.fallbackLocale }
   set fallbackLocale (locale: Locale): void {
@@ -694,7 +702,7 @@ export default class VueI18n {
   }
 
   n (value: number, ...args: any): NumberFormatResult {
-    let locale: Locale = this.locale
+    let locale: Locale = this.numberLocale
     let key: ?string = null
     let options: ?NumberFormatOptions = null
 
