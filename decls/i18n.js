@@ -52,6 +52,8 @@ declare type MissingHandler = (locale: Locale, key: Path, vm?: any) => string | 
 
 declare type I18nOptions = {
   locale?: Locale,
+  numberLocale ?: Locale,
+  dateTimeLocale ?: Locale,
   fallbackLocale?: Locale,
   messages?: LocaleMessages,
   dateTimeFormats?: DateTimeFormats,
@@ -81,6 +83,8 @@ declare interface I18n {
   get vm (): any, // for internal
   get locale (): Locale,
   set locale (locale: Locale): void,
+  get numberLocale (): Locale,
+  get dateTimeLocale (): Locale,
   get fallbackLocale (): Locale,
   set fallbackLocale (locale: Locale): void,
   get messages (): LocaleMessages,
