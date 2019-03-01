@@ -164,10 +164,15 @@ export default class VueI18n {
     /* istanbul ignore if */
     if (!this._sync || !this._root) { return null }
     const target: any = this._vm
-    return this._root.$i18n.vm.$watch('locale', (val) => {
+    var fn1 = this._root.$i18n.vm.$watch('locale', (val) => {
       target.$set(target, 'locale', val)
       target.$forceUpdate()
     }, { immediate: true })
+    var fn1 = this._root.$i18n.vm.$watch('numberLocale', (val) => {
+      target.$set(target, 'numberLocale', val)
+      target.$forceUpdate()
+    }, { immediate: true })
+    return function() {fn1();fn2();}
   }
 
   get vm (): any { return this._vm }
