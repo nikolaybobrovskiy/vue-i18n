@@ -1048,10 +1048,15 @@ VueI18n.prototype.watchLocale = function watchLocale () {
   /* istanbul ignore if */
   if (!this._sync || !this._root) { return null }
   var target = this._vm;
-  return this._root.$i18n.vm.$watch('locale', function (val) {
+  var fn1 = this._root.$i18n.vm.$watch('locale', function (val) {
     target.$set(target, 'locale', val);
     target.$forceUpdate();
-  }, { immediate: true })
+  }, { immediate: true });
+  var fn1 = this._root.$i18n.vm.$watch('numberLocale', function (val) {
+    target.$set(target, 'numberLocale', val);
+    target.$forceUpdate();
+  }, { immediate: true });
+	return function() {fn1();fn2();}
 };
 
 prototypeAccessors.vm.get = function () { return this._vm };
