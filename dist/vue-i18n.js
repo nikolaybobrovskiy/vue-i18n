@@ -1058,7 +1058,7 @@
       target.$set(target, 'locale', val);
       target.$forceUpdate();
     }, { immediate: true });
-    var fn1 = this._root.$i18n.vm.$watch('numberLocale', function (val) {
+    var fn2 = this._root.$i18n.vm.$watch('numberLocale', function (val) {
       target.$set(target, 'numberLocale', val);
       target.$forceUpdate();
     }, { immediate: true });

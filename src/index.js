@@ -168,7 +168,7 @@ export default class VueI18n {
       target.$set(target, 'locale', val)
       target.$forceUpdate()
     }, { immediate: true })
-    var fn1 = this._root.$i18n.vm.$watch('numberLocale', (val) => {
+    var fn2 = this._root.$i18n.vm.$watch('numberLocale', (val) => {
       target.$set(target, 'numberLocale', val)
       target.$forceUpdate()
     }, { immediate: true })
