@@ -1056,7 +1056,7 @@ VueI18n.prototype.watchLocale = function watchLocale () {
     target.$set(target, 'numberLocale', val);
     target.$forceUpdate();
   }, { immediate: true });
-	return function() {fn1();fn2();}
+  return function() {fn1();fn2();}
 };
 
 prototypeAccessors.vm.get = function () { return this._vm };
