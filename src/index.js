@@ -172,7 +172,7 @@ export default class VueI18n {
       target.$set(target, 'numberLocale', val)
       target.$forceUpdate()
     }, { immediate: true })
-	return function() {fn1();fn2();}
+    return function() {fn1();fn2();}
   }
 
   get vm (): any { return this._vm }
