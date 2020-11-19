@@ -186,7 +186,14 @@ export default class VueI18n {
     this._vm.$set(this._vm, 'locale', locale)
   }
   get numberLocale (): Locale { return this._vm.numberLocale }
+  set numberLocale (locale: Locale): void {
+    this._vm.$set(this._vm, 'numberLocale', locale)
+  }
+
   get dateTimeLocale (): Locale { return this._vm.dateTimeLocale }
+  set dateTimeLocale (locale: Locale): void {
+    this._vm.$set(this._vm, 'dateTimeLocale', locale)
+  }
 
   get fallbackLocale (): Locale { return this._vm.fallbackLocale }
   set fallbackLocale (locale: Locale): void {
