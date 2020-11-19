@@ -1,6 +1,6 @@
 /*!
  * vue-i18n v8.8.3 
- * (c) 2019 kazuya kawaguchi
+ * (c) 2020 kazuya kawaguchi
  * Released under the MIT License.
  */
 'use strict';
@@ -1072,7 +1072,14 @@ prototypeAccessors.locale.set = function (locale) {
   this._vm.$set(this._vm, 'locale', locale);
 };
 prototypeAccessors.numberLocale.get = function () { return this._vm.numberLocale };
+prototypeAccessors.numberLocale.set = function (locale) {
+  this._vm.$set(this._vm, 'numberLocale', locale);
+};
+
 prototypeAccessors.dateTimeLocale.get = function () { return this._vm.dateTimeLocale };
+prototypeAccessors.dateTimeLocale.set = function (locale) {
+  this._vm.$set(this._vm, 'dateTimeLocale', locale);
+};
 
 prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
 prototypeAccessors.fallbackLocale.set = function (locale) {
